@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- Google 網站所有權驗證標籤 -->
+    <meta name="google-site-verification" content="google23ae61fe96ec85c1" />
+    
     <!-- SEO 優化標籤 -->
     <title>術後照護須知 | 蜜蜂美體醫美中心 - 專屬美力小卡</title>
-    <meta name="description" content="蜜蜂美體醫美中心提供最貼心的術後照護建議、最新醫美價目表與預約須知。讓妳在變美的路上，感受到如同小蜜蜂築巢般的細心呵護。">
+    <meta name="description" content="蜜蜂美體醫美中心提供最貼心的術後照護建議、最新醫美價目表與預約須知。讓妳在變美的路上，感受到如同小蜜蜂築巢般的細心護理。">
     <meta name="keywords" content="醫美術後照護, 醫美價目表, 蜜蜂美體, 醫美預約, 術後保養">
     
     <!-- Open Graph (FB/LINE 分享時顯示的卡片資訊) -->
@@ -145,6 +148,16 @@
         .btn-booking:active {
             transform: scale(0.95);
         }
+
+        .benefit-card {
+            background: #fff9fa;
+            border: 1px solid #ffd1dc;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -158,6 +171,7 @@
     <nav class="nav-tabs">
         <div class="tab-btn active" onclick="showTab('aftercare')">🌸 術後照護</div>
         <div class="tab-btn" onclick="showTab('pricing')">💎 價目表</div>
+        <div class="tab-btn" onclick="showTab('benefit')">🎁 會員福利</div>
         <div class="tab-btn" onclick="showTab('notice')">📝 預約須知</div>
         <div class="tab-btn" onclick="showTab('faq')">❓ 常見問題</div>
         <div class="tab-btn" onclick="showTab('booking')">📅 我要預約</div>
@@ -185,7 +199,7 @@
         </article>
     </div>
 
-    <!-- 其他分頁保持原樣 -->
+    <!-- 價目表分頁 -->
     <div id="pricing" class="content-section">
         <div class="honey-badge">Service Menu</div>
         <h2 class="text-xl font-bold text-pink-500 mb-4">美麗投資清單 💎</h2>
@@ -193,6 +207,33 @@
             <div class="price-tag"><span>水潤蜜糖美肌 (臉部)</span><span class="font-bold text-pink-400">$1,980</span></div>
             <div class="price-tag"><span>蜜蜂雷射全臉淨化</span><span class="font-bold text-pink-400">$3,500</span></div>
             <div class="price-tag"><span>V領小臉纖細專案</span><span class="font-bold text-pink-400">$8,800</span></div>
+        </div>
+    </div>
+
+    <!-- 會員福利分頁 -->
+    <div id="benefit" class="content-section">
+        <div class="honey-badge">Member Only</div>
+        <h2 class="text-xl font-bold text-pink-500 mb-4">小蜜蜂專屬福利 🎁</h2>
+        <div class="benefit-card">
+            <span class="text-2xl mr-3">🎂</span>
+            <div>
+                <p class="font-bold text-pink-500 text-sm">當月壽星禮</p>
+                <p class="text-xs text-gray-500">生日當月預約，即享療程 85 折優惠乙次。</p>
+            </div>
+        </div>
+        <div class="benefit-card">
+            <span class="text-2xl mr-3">👯‍♀️</span>
+            <div>
+                <p class="font-bold text-pink-500 text-sm">閨蜜推薦禮</p>
+                <p class="text-xs text-gray-500">推薦好友入會，雙方皆可獲得 $500 課程折價券。</p>
+            </div>
+        </div>
+        <div class="benefit-card">
+            <span class="text-2xl mr-3">🌟</span>
+            <div>
+                <p class="font-bold text-pink-500 text-sm">點數換美麗</p>
+                <p class="text-xs text-gray-500">消費 $100 累積 1 點，點數可兌換各式精美保養品。</p>
+            </div>
         </div>
     </div>
 
@@ -233,8 +274,13 @@
         const tabs = document.querySelectorAll('.tab-btn');
         tabs.forEach(tab => tab.classList.remove('active'));
         document.getElementById(tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
-        event.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        // 使用 try-catch 避免在某些環境下事件遺失導致報錯
+        try {
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+                event.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        } catch (e) {}
     }
 </script>
 
